@@ -23,6 +23,10 @@ public class Recursion {
     System.out.println(allStar("xxxx"));
     System.out.println(pairStar("aabb"));
     System.out.println(endX("axaxxbb"));
+    System.out.println(countPairs("axaxaab"));
+    System.out.println(countAbc("abcababc"));
+    System.out.println(count11("11ab111b"));
+    System.out.println(stringClean("11ab111b"));
   }
 
   public static int factorial(int n){
@@ -128,7 +132,7 @@ public class Recursion {
     return str.charAt(0)+pairStar(str.substring(1));
   }
 
-  public static String endX(String str) {
+  public static String endX(String str){
     if(str.length()<1) return "";
     if(str.charAt(0)=='x')
       return endX(str.substring(1)) + 'x';
@@ -141,4 +145,26 @@ public class Recursion {
       return 1+countPairs(str.substring(1));
     return countPairs(str.substring(1));
   }
+
+  public static int countAbc(String str){
+    if(str.length()<3) return 0;
+    if(str.charAt(0)=='a' && str.charAt(1)=='b' && (str.charAt(2)=='a' || str.charAt(2)=='c'))
+      return countAbc(str.substring(2)) + 1;
+    return countAbc(str.substring(1));
+  }
+
+  public static int count11(String str){
+    if(str.length()<2) return 0;
+    if(str.charAt(0)=='1' && str.charAt(1)=='1')
+      return count11(str.substring(2)) + 1;
+    return count11(str.substring(1));
+  }
+
+  public static String stringClean(String str) {
+    if(str.length()<2) return str;
+    if(str.charAt(1)==str.charAt(0))
+      return stringClean(str.substring(1));
+    return str.charAt(0) + stringClean(str.substring(1));
+  }
+
 }
