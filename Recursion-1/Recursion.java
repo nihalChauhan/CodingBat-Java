@@ -11,6 +11,8 @@ public class Recursion {
     System.out.println(powerN(4,2));
     System.out.println(countX("xxabxx"));
     System.out.println(countHi("ihihiabhi3"));
+    System.out.println(changeXY("xabxbxbx"));
+    System.out.println(changePi("pixpixr"));
   }
 
   public static int factorial(int n){
@@ -64,4 +66,19 @@ public class Recursion {
       return 1+countHi(str.substring(0, str.length()-2));
     return countHi(str.substring(0, str.length()-1));
   }
+
+  public static String changeXY(String str){
+    if(str.length()<1) return "";
+    if(str.charAt(0)=='x')
+      return 'y'+changeXY(str.substring(1));
+    return str.charAt(0)+changeXY(str.substring(1));
+  }
+
+  public static String changePi(String str){
+    if(str.length()<2) return str;
+    if(str.charAt(0)=='p' && str.charAt(1)=='i')
+      return "3.14" + changePi(str.substring(2));
+    return str.charAt(0)+changePi(str.substring(1));
+  }
+
 }
