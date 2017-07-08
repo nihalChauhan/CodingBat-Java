@@ -13,6 +13,16 @@ public class Recursion {
     System.out.println(countHi("ihihiabhi3"));
     System.out.println(changeXY("xabxbxbx"));
     System.out.println(changePi("pixpixr"));
+    System.out.println(noX("xabxbxbx"));
+
+    int a[] = {1,2,6,11,110};
+    System.out.println(array6(a, 0));
+    System.out.println(array11(a, 0));
+    System.out.println(array220(a, 0));
+
+    System.out.println(allStar("xxxx"));
+    System.out.println(pairStar("aabb"));
+
   }
 
   public static int factorial(int n){
@@ -79,6 +89,43 @@ public class Recursion {
     if(str.charAt(0)=='p' && str.charAt(1)=='i')
       return "3.14" + changePi(str.substring(2));
     return str.charAt(0)+changePi(str.substring(1));
+  }
+
+  public static String noX(String str){
+    if(str.length()<1) return "";
+    if(str.charAt(0)=='x')
+      return noX(str.substring(1));
+    return str.charAt(0)+noX(str.substring(1));
+  }
+
+  public static boolean array6(int[] nums, int index){
+    if(index>=nums.length) return false;
+    if(nums[index]==6) return true;
+    return array6(nums, index+1);
+  }
+
+  public static int array11(int[] nums, int index){
+    if(index>=nums.length) return 0;
+    if(nums[index]==11) return 1+array11(nums, index+1);
+    return array11(nums, index+1);
+  }
+
+  public static boolean array220(int[] nums, int index){
+    if(index>=nums.length-1) return false;
+    if(nums[index+1]==nums[index]*10) return true;
+    return array220(nums, index+1);
+  }
+
+  public static String allStar(String str){
+    if(str.length()<2) return str;
+    return str.charAt(0)+"*"+allStar(str.substring(1));
+  }
+
+  public static String pairStar(String str){
+    if(str.length()<2) return str;
+    if(str.charAt(0) == str.charAt(1))
+      return str.charAt(0)+"*"+pairStar(str.substring(1));
+    return str.charAt(0)+pairStar(str.substring(1));
   }
 
 }
