@@ -22,7 +22,7 @@ public class Recursion {
 
     System.out.println(allStar("xxxx"));
     System.out.println(pairStar("aabb"));
-
+    System.out.println(endX("axaxxbb"));
   }
 
   public static int factorial(int n){
@@ -128,4 +128,17 @@ public class Recursion {
     return str.charAt(0)+pairStar(str.substring(1));
   }
 
+  public static String endX(String str) {
+    if(str.length()<1) return "";
+    if(str.charAt(0)=='x')
+      return endX(str.substring(1)) + 'x';
+    return str.charAt(0)+endX(str.substring(1));
+  }
+
+  public static int countPairs(String str){
+    if(str.length()<3) return 0;
+    if(str.charAt(2)==str.charAt(0))
+      return 1+countPairs(str.substring(1));
+    return countPairs(str.substring(1));
+  }
 }
