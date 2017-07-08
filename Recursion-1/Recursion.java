@@ -7,7 +7,10 @@ public class Recursion {
     System.out.println(triangle(5));
     System.out.println(sumDigits(123));
     System.out.println(count7(172737));
-    System.out.println(count8(182884));  
+    System.out.println(count8(182884));
+    System.out.println(powerN(4,2));
+    System.out.println(countX("xxabxx"));
+    System.out.println(countHi("ihihiabhi3"));
   }
 
   public static int factorial(int n){
@@ -42,5 +45,23 @@ public class Recursion {
     if(n%100 == 88) return 2+count8(n/10);
     if(n%10==8) return 1+count8(n/10);
     return count8(n/10);
+  }
+
+  public static int powerN(int base, int n){
+    if(n==0) return 1;
+    return base*powerN(base, n-1);
+  }
+
+  public static int countX(String str){
+    if(str.length()==0) return 0;
+    if(str.charAt(str.length()-1)=='x') return 1+countX(str.substring(0, str.length()-1));
+    return countX(str.substring(0, str.length()-1));
+  }
+
+  public static int countHi(String str) {
+    if(str.length()==1 || str.length()==0) return 0;
+    if(str.charAt(str.length()-2)=='h' && str.charAt(str.length()-1)=='i')
+      return 1+countHi(str.substring(0, str.length()-2));
+    return countHi(str.substring(0, str.length()-1));
   }
 }
