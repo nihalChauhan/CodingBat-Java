@@ -30,8 +30,8 @@ public class Recursion {
     System.out.println(stringClean("11ab111b"));
     System.out.println(parenBit("ab(xyz)pq"));
     System.out.println(nestParen("((()))"));
-
     System.out.println(strCount("hello ella", "el"));
+    System.out.println(strDist("axxawesomexxab", "xx"));
   }
 
   public static int factorial(int n){
@@ -203,4 +203,20 @@ public class Recursion {
     return strCount(str.substring(1), sub);
   }
 
+  public static boolean strCopies(String str, String sub, int n){
+    if(n==0) return true;
+    if(str.length()<sub.length()) return false;
+    if(str.substring(0, sub.length()).equals(sub))
+      return strCopies(str.substring(1), sub, n-1);
+    return strCopies(str.substring(1), sub, n);
+  }
+
+  public static int strDist(String str, String sub) {
+    if(str.length()<sub.length()) return 0;
+    if(!(str.substring(0, sub.length()).equals(sub)))
+      return strDist(str.substring(1), sub);
+    if(!(str.substring(str.length()-sub.length(), str.length()).equals(sub)))
+      return strDist(str.substring(0, str.length()-1), sub);
+    return str.length();
+  }
 }
