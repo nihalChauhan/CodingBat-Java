@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Recursion {
   public static void main(String[] args) {
+
     System.out.println(factorial(5));
     System.out.println(bunnyEars(10));
     System.out.println(triangle(5));
@@ -27,6 +28,10 @@ public class Recursion {
     System.out.println(countAbc("abcababc"));
     System.out.println(count11("11ab111b"));
     System.out.println(stringClean("11ab111b"));
+    System.out.println(parenBit("ab(xyz)pq"));
+    System.out.println(nestParen("((()))"));
+
+    System.out.println(strCount("hello ella", "el"));
   }
 
   public static int factorial(int n){
@@ -165,6 +170,37 @@ public class Recursion {
     if(str.charAt(1)==str.charAt(0))
       return stringClean(str.substring(1));
     return str.charAt(0) + stringClean(str.substring(1));
+  }
+
+  public static int countHi2(String str) {
+    if(str.length()<2) return 0;
+    if(str.charAt(0)=='h' && str.charAt(1)=='i')
+      return countHi2(str.substring(2)) + 1;
+    if(str.charAt(0)=='x' && str.charAt(1)=='h')
+      return countHi2(str.substring(2));
+    return countHi2(str.substring(1));
+  }
+
+  public static String parenBit(String str){
+    if(str.length()<1) return str;
+    if(str.charAt(0)!='(') return parenBit(str.substring(1));
+    if(str.charAt(str.length()-1)!=')') return parenBit(str.substring(0, str.length()-1));
+    return str;
+  }
+
+  public static boolean nestParen(String str){
+    if(str.length()<1) return true;
+    if(str.length()==1) return false;
+    if(str.charAt(0)!='(') return nestParen(str.substring(1));
+    if(str.charAt(str.length()-1)!=')') return nestParen(str.substring(0, str.length()-1));
+    return nestParen(str.substring(1, str.length()-1));
+  }
+
+  public static int strCount(String str, String sub){
+    if(str.length()<sub.length()) return 0;
+    if(str.substring(0, sub.length()).equals(sub))
+      return 1 + strCount(str.substring(sub.length()), sub);
+    return strCount(str.substring(1), sub);
   }
 
 }
