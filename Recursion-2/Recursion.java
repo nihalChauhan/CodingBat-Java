@@ -9,6 +9,8 @@ public class Recursion {
     System.out.println(groupSum5(0, a, 9));
     System.out.println(groupSumClump(0, a, 22));
     System.out.println(splitArray(a));
+    System.out.println(splitOdd10(a));
+    System.out.println(split53(a));
   }
 
   public static boolean groupSum(int start, int[] nums, int target) {
@@ -84,6 +86,40 @@ public class Recursion {
     if(splitArrayHelper(start+1, nums, g1+nums[start], g2))
       return true;
     if(splitArrayHelper(start+1, nums, g1, g2+nums[start]))
+      return true;
+    return false;
+  }
+
+  public static boolean splitOdd10(int[] nums){
+    return splitOdd10Helper(0, nums, 0, 0);
+  }
+
+  public static boolean splitOdd10Helper(int start, int[] nums, int multi, int odd){
+    if(start>=nums.length)
+      return (multi%10==0 && odd%2==1);
+    if(splitOdd10Helper(start+1, nums, multi+nums[start], odd))
+      return true;
+    if(splitOdd10Helper(start+1, nums, multi, odd+nums[start]))
+      return true;
+    return false;
+  }
+
+  public static boolean split53(int[] nums){
+    return split53Helper(0,nums,0,0);
+  }
+
+  public static boolean split53Helper(int start, int[] nums, int multi3, int multi5){
+    if(start>=nums.length)
+      return (multi3 == multi5);
+
+    if(nums[start]%3==0)
+      return split53Helper(start+1, nums, multi3+nums[start], multi5);
+    if(nums[start]%5==0)
+      return split53Helper(start+1, nums, multi3, multi5+nums[start]);
+
+    if(split53Helper(start+1, nums, multi3+nums[start], multi5))
+      return true;
+    if(split53Helper(start+1, nums, multi3, multi5+nums[start]))
       return true;
     return false;
   }
