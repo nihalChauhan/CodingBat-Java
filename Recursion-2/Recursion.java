@@ -2,12 +2,13 @@ import java.util.*;
 
 public class Recursion {
   public static void main(String[] args){
-    int a[] = {1,5,4,6,11,11,2,2,3};
+    int a[] = {1,5,4,6,11,11,2,2,3,3};
     System.out.println(groupSum(0, a, 12));
     System.out.println(groupSum6(0, a, 14));
     System.out.println(groupNoAdj(0, a, 7));
     System.out.println(groupSum5(0, a, 9));
     System.out.println(groupSumClump(0, a, 22));
+    System.out.println(splitArray(a));
   }
 
   public static boolean groupSum(int start, int[] nums, int target) {
@@ -73,4 +74,17 @@ public class Recursion {
     return false;
   }
 
+  public static boolean splitArray(int[] nums){
+    return splitArrayHelper(0, nums, 0, 0);
+  }
+
+  public static boolean splitArrayHelper(int start, int[] nums, int g1, int g2){
+    if(start >= nums.length)
+      return g1==g2;
+    if(splitArrayHelper(start+1, nums, g1+nums[start], g2))
+      return true;
+    if(splitArrayHelper(start+1, nums, g1, g2+nums[start]))
+      return true;
+    return false;
+  }
 }
